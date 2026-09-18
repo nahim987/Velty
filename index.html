@@ -1,98 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>VELTY — Digital Store</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VELTY - Premium Wallpapers</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:Arial,sans-serif;background:#050505;color:#fff}
-header{position:sticky;top:0;z-index:10;background:#050505;border-bottom:1px solid #222;padding:18px 6%;display:flex;justify-content:space-between;align-items:center}
-.logo{letter-spacing:7px;font-weight:800;font-size:26px}
-.cart-btn{background:#fff;color:#000;border:0;border-radius:8px;padding:10px 16px;font-weight:800;cursor:pointer}
-.hero{padding:90px 6%;border-bottom:1px solid #222;background:radial-gradient(circle at 80% 30%,#222,#050505)}
-.hero h1{font-family:Georgia,serif;font-size:70px;line-height:.9} .hero h1 span{color:#888}
-.hero p{color:#888;max-width:500px;margin:20px 0;font-size:18px}
-.btn{background:#fff;color:#000;border:0;padding:14px 22px;border-radius:8px;font-weight:800;cursor:pointer;display:inline-block}
-.btn2{border:1px solid #444;background:transparent;color:#fff;margin-left:8px}
-.section{padding:60px 6%}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)} .hero h1{font-size:48px}}
-.card{background:#0e0e0e;border:1px solid #222;border-radius:12px;overflow:hidden}
-.card img{width:100%;aspect-ratio:1;object-fit:cover;background:#111;display:block}
-.info{padding:12px}.price{font-weight:800;font-size:18px;display:flex;justify-content:space-between;align-items:center;margin-top:10px}
-.add{background:#fff;color:#000;border:0;padding:7px 10px;border-radius:6px;font-weight:700;cursor:pointer}
-.filter{border:1px solid #333;background:transparent;color:#aaa;padding:8px 14px;border-radius:20px;cursor:pointer;margin:4px}
-.filter.active{background:#fff;color:#000}
-form.feedback{border:1px solid #222;background:#0e0e0e;padding:25px;border-radius:12px;margin-top:20px}
-input,textarea{width:100%;background:#000;border:1px solid #333;color:#fff;padding:12px;border-radius:8px;margin:8px 0}
-textarea{height:120px}
-.cart{position:fixed;right:0;top:0;width:380px;height:100%;background:#0e0e0e;border-left:1px solid #222;padding:20px;transform:translateX(100%);transition:.25s;z-index:99}
-.cart.show{transform:translateX(0)} .overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;z-index:90} .overlay.show{display:block}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a0a;color:#fff;font-family:Inter,sans-serif;overflow-x:hidden}
+header{padding:20px;text-align:center;border-bottom:1px solid #222}
+header h1{letter-spacing:4px;color:#d4af37}
+#home{display:flex;flex-direction:column;gap:20px;padding:40px 20px;max-width:900px;margin:auto}
+.card{border:1px solid #d4af3733;background:linear-gradient(135deg,#151515,#0a0a0a);border-radius:20px;padding:30px;text-align:center;cursor:pointer;transition:.4s;position:relative;overflow:hidden}
+.card:hover{transform:scale(1.02);border-color:#d4af37;box-shadow:0 0 30px #d4af3744}
+.card h2{font-size:28px;margin-bottom:10px}
+.card p{color:#888}
+.badge{position:absolute;top:15px;left:15px;background:#d4af37;color:#000;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:bold}
+#gallery{display:none;animation:slideIn .5s ease}
+@keyframes slideIn{from{opacity:0;transform:translateY(50px)}to{opacity:1;transform:translateY(0)}}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:15px;padding:20px}
+.item{border-radius:12px;overflow:hidden;background:#151515;border:1px solid #222}
+.item img{width:100%;aspect-ratio:9/16;object-fit:cover;display:block}
+.item .pc img{aspect-ratio:16/9}
+.info{padding:10px;display:flex;justify-content:space-between;align-items:center}
+.info button{background:#d4af37;border:none;padding:5px 12px;border-radius:6px;font-weight:bold;cursor:pointer}
+.back{margin:20px;background:transparent;border:1px solid #333;color:#fff;padding:10px 20px;border-radius:8px;cursor:pointer}
 </style>
 </head>
 <body>
-<header><div class="logo">VELTY</div><button class="cart-btn" onclick="openCart()">Cart <span id="count">0</span></button></header>
-<div class="hero"><h1>Small Price.<br><span>Big Vibes.</span></h1><p>Premium wallpapers, lock screens, icons and curated digital packs — from ৳5</p><a href="#shop" class="btn">Shop Collection →</a></div>
-<div class="section" id="shop">
-<div style="margin-bottom:15px"><button class="filter active" onclick="filterBy('all',this)">All</button><button class="filter" onclick="filterBy('wallpaper',this)">Wallpapers</button><button class="filter" onclick="filterBy('car',this)">Cars</button><button class="filter" onclick="filterBy('nature',this)">Nature</button><button class="filter" onclick="filterBy('city',this)">City</button><button class="filter" onclick="filterBy('aesthetic',this)">Aesthetic</button><button class="filter" onclick="filterBy('icon',this)">Icons</button><button class="filter" onclick="filterBy('bundle',this)">Bundles</button></div>
-<div class="grid" id="products"></div>
+<header><h1>VELTY</h1><p style="color:#666;font-size:12px;letter-spacing:2px">PREMIUM COLLECTION</p></header>
+
+<div id="home">
+  <div class="card" onclick="openCat('phone')">
+    <span class="badge">1.2k+ • AMOLED</span>
+    <h2>📱 Phone Wallpapers</h2>
+    <p>Portrait • 9:16 • 4K • OLED Black</p>
+  </div>
+  <div class="card" onclick="openCat('pc')">
+    <span class="badge">890+ • 4K/8K</span>
+    <h2>💻 PC Wallpapers</h2>
+    <p>Ultrawide • 16:9 • 4K • Minimal</p>
+  </div>
 </div>
-<div class="section">
-<h2 style="font-family:Georgia;font-size:38px">Feedback</h2>
-<form class="feedback" action="https://formsubmit.co/b2d47fe27442439da8929dabb0d86652" method="POST">
-<input type="hidden" name="_captcha" value="false">
-<input type="hidden" name="_next" value="https://nahim987.github.io/velty/">
-<input name="name" placeholder="Your name" required>
-<input name="email" type="email" placeholder="Email" required>
-<input name="product" placeholder="Product name">
-<textarea name="message" placeholder="Your feedback..." required></textarea>
-<button class="btn" type="submit">Send Feedback →</button>
-</form>
+
+<div id="gallery">
+  <button class="back" onclick="goHome()">← Back to Categories</button>
+  <h2 id="catTitle" style="padding:0 20px"></h2>
+  <div class="grid" id="grid"></div>
 </div>
-<div class="overlay" id="overlay" onclick="closeCart()"></div>
-<div class="cart" id="cart"><div style="display:flex;justify-content:space-between"><h3>Your Cart</h3><button onclick="closeCart()" style="background:none;border:0;color:#fff;font-size:24px;cursor:pointer">×</button></div><div id="cartItems" style="margin-top:20px"></div><div style="margin-top:20px;font-weight:800;display:flex;justify-content:space-between"><span>Total</span><span id="total">৳0</span></div></div>
+
 <script>
-const products=[
-{id:1,name:"Midnight Black",cat:"wallpaper",price:5,desc:"10 wallpapers • HD"},
-{id:2,name:"Silver Horizon",cat:"wallpaper",price:5,desc:"10 wallpapers • HD"},
-{id:3,name:"Alpine Escape",cat:"nature",price:5,desc:"10 wallpapers • 4K"},
-{id:4,name:"Ocean Noir",cat:"nature",price:5,desc:"10 wallpapers • HD"},
-{id:5,name:"German Luxury",cat:"car",price:5,desc:"10 wallpapers • HD"},
-{id:6,name:"Supercar Noir",cat:"car",price:5,desc:"10 wallpapers • HD"},
-{id:7,name:"Tokyo After Dark",cat:"city",price:5,desc:"10 wallpapers • HD"},
-{id:8,name:"Monochrome City",cat:"city",price:5,desc:"10 wallpapers • HD"},
-{id:9,name:"Dark Luxury",cat:"aesthetic",price:10,desc:"15 wallpapers • HD"},
-{id:10,name:"Noir Icons",cat:"icon",price:10,desc:"50+ icons • PNG"},
-{id:11,name:"Lockscreen Elite",cat:"icon",price:10,desc:"10 lock screens"},
-{id:12,name:"Ultimate Bundle",cat:"bundle",price:49,desc:"100+ products"}
+let items=[
+  {name:"Midnight Peaks",price:80,img:"wall1.jpg",cat:"pc"},
+  {name:"Black Gold",price:100,img:"wall2.jpg",cat:"phone"},
+  {name:"Arctic Smoke",price:100,img:"wall3.jpg",cat:"phone"},
+  // aro add korte chaile ekhane add koro
 ];
-function img(text){return `https://via.placeholder.com/600/0d0d0d/ffffff?text=${encodeURIComponent(text)}`;}
-const box=document.getElementById('products');
-function render(list){
-box.innerHTML="";
-list.forEach(p=>{
-box.innerHTML+=`<div class="card"><img src="${img(p.name)}"><div class="info"><div style="font-size:10px;color:#666;letter-spacing:1px">${p.cat.toUpperCase()}</div><h3 style="margin:4px 0">${p.name}</h3><div style="font-size:12px;color:#777">${p.desc}</div><div class="price"><span>৳${p.price}</span><button class="add" onclick="addCart(${p.id})">Add</button></div></div></div>`;
-});
+
+function openCat(c){
+  document.getElementById('home').style.display='none';
+  let g=document.getElementById('gallery');
+  g.style.display='block';
+  document.getElementById('catTitle').innerText= c=='phone' ? 'Phone Wallpapers' : 'PC Wallpapers';
+  let grid=document.getElementById('grid');
+  grid.innerHTML='';
+  let filtered=items.filter(i=>i.cat===c);
+  filtered.forEach(it=>{
+    grid.innerHTML+=`<div class="item ${c}"><img src="${it.img}" loading="lazy"><div class="info"><span>${it.name}</span><button>৳${it.price}</button></div></div>`;
+  });
+  if(filtered.length==0) grid.innerHTML=`<p style="color:#666;padding:20px">No wallpapers in this category yet. Add ${c} wallpapers as ${c=='phone'?'wall2.jpg, wall3.jpg':'wall1.jpg'}</p>`;
 }
-render(products);
-function filterBy(c,el){
-document.querySelectorAll('.filter').forEach(b=>b.classList.remove('active'));
-if(el) el.classList.add('active');
-if(c==='all') render(products); else render(products.filter(p=>p.cat===c || (c==='under10' && p.price<=10)));
+function goHome(){
+  document.getElementById('gallery').style.display='none';
+  document.getElementById('home').style.display='flex';
 }
-let cart=[];
-function addCart(id){
-let f=products.find(p=>p.id===id); cart.push(f); updateCart(); openCart();
-}
-function updateCart(){
-document.getElementById('count').innerText=cart.length;
-let t=0; let html="";
-cart.forEach((c,i)=>{t+=c.price; html+=`<div style="display:flex;gap:10px;margin:10px 0;border-bottom:1px solid #222;padding-bottom:10px"><img src="${img(c.name)}" style="width:50px;height:50px;border-radius:6px"><div style="flex:1"><div>${c.name}</div><small style="color:#777">৳${c.price}</small></div><button onclick="cart.splice(${i},1);updateCart()" style="background:none;border:0;color:#666;cursor:pointer">x</button></div>`});
-document.getElementById('cartItems').innerHTML=html||"Empty";
-document.getElementById('total').innerText="৳"+t;
-}
-function openCart(){document.getElementById('cart').classList.add('show');document.getElementById('overlay').classList.add('show')}
-function closeCart(){document.getElementById('cart').classList.remove('show');document.getElementById('overlay').classList.remove('show')}
 </script>
 </body>
 </html>
