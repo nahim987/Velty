@@ -1,66 +1,84 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VELTY</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
-body{background:#050505;color:#fff}
-header{display:flex;justify-content:space-between;padding:16px 20px;border-bottom:1px solid #111;position:sticky;top:0;background:#050505;z-index:20}
-header h1{letter-spacing:5px;font-size:18px}
-.hero{padding:40px 20px 10px;max-width:1100px;margin:auto}
-.hero h1{font-size:48px;font-weight:900;letter-spacing:-2px;line-height:.9;text-align:left}
+*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}
+body{background:#070707;color:#fff}
+header{padding:15px 20px;border-bottom:1px solid #222;display:flex;justify-content:space-between}
+.hero{padding:30px 20px}
+.hero h1{font-size:40px;font-weight:900;line-height:0.9}
 .hero h1 span{color:#d4af37}
-.hero p{color:#666;margin-top:12px;max-width:400px;font-size:13px}
-.grid4{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 20px;max-width:1100px;margin:auto;padding:16px 20px}
-@media(min-width:700px){.grid4{grid-template-columns:repeat(4,1fr)}}
-.cat{border:1px solid #1a1a1a;background:#0e0e0e;border-radius:18px;padding:20px;cursor:pointer;transition:.3s}
-.cat:hover{border-color:#444;transform:translateY(-2px)}
-.cat h3{font-size:14px;margin-top:10px}
-.cat p{color:#555;font-size:11px;margin-top:3px}
-.box{width:34px;height:34px;background:#151515;border-radius:9px;display:grid;place-items:center}
-#view{max-width:1100px;margin:auto;padding:0 20px;display:none}
-#view.show{display:block;animation:up .35s ease}
-@keyframes up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-.sub2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
-.subcard{background:#111;border:1px solid #222;border-radius:16px;padding:22px;text-align:center;cursor:pointer}
-.subcard:hover{border-color:#d4af37}
-.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:16px}
-.item{background:#0e0e0e;border:1px solid #1a1a1a;border-radius:14px;overflow:hidden}
-.item img{width:100%;display:block}.phone img{aspect-ratio:9/16;object-fit:cover}.pc img{aspect-ratio:16/9;object-fit:cover}
-.info{padding:10px;display:flex;justify-content:space-between}
-.info b{font-size:12px} .info em{background:#fff;color:#000;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:800;font-style:normal}
-.order{background:#0e0e0e;border:1px solid #1e1e1e;border-radius:20px;padding:22px;margin-top:16px}
-.order h2{font-size:20px} .order .price{color:#d4af37;font-size:22px;font-weight:900;margin:8px 0}
-.order input,.order textarea{width:100%;background:#111;border:1px solid #222;color:#fff;padding:12px;border-radius:10px;margin-top:10px;outline:none}
-.order input:focus,.order textarea:focus{border-color:#d4af37}
-.order button{width:100%;background:#fff;color:#000;border:none;padding:13px;border-radius:12px;font-weight:900;margin-top:12px;cursor:pointer}
-.back{background:#161616;border:1px solid #222;color:#fff;padding:7px 14px;border-radius:100px;cursor:pointer;font-size:12px;margin-bottom:12px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 20px}
+.card{border:1px solid #222;background:#111;border-radius:16px;padding:18px;cursor:pointer}
+.card:active{background:#1a1a1a}
+#view{display:none;padding:20px}
+#view.show{display:block}
+.btn{background:#222;color:#fff;border:1px solid #333;padding:8px 14px;border-radius:20px}
+.box2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:15px}
+.smallBox{background:#111;border:1px solid #333;border-radius:14px;padding:18px;text-align:center;cursor:pointer}
+.gal{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:15px}
+.pic{background:#111;border:1px solid #222;border-radius:12px;padding:10px;text-align:center}
+.pic img{width:100%;border-radius:8px}
+.order{background:#111;border:1px solid #333;border-radius:16px;padding:18px;margin-top:15px}
+.order input,.order textarea{width:100%;background:#000;border:1px solid #333;color:#fff;padding:10px;border-radius:8px;margin-top:10px}
+.order button{width:100%;background:#fff;color:#000;padding:12px;border:none;border-radius:10px;font-weight:800;margin-top:12px}
 </style>
 </head>
 <body>
-<header><h1>VELTY</h1><span style="color:#555;font-size:10px">EST.2026</span></header>
-<div class="hero"><h1>Your Screen<br><span>Deserves Better.</span></h1><p>Premium wallpapers + custom thumbnails, logos & banners crafted for you.</p></div>
+<header><b>VELTY</b><span style="color:#666;font-size:12px">EST 2026</span></header>
+<div class="hero"><h1>Your Screen<br><span>Deserves Better.</span></h1><p style="color:#666;margin-top:10px;font-size:13px">Click any box below</p></div>
 
-<div class="grid4">
-<div class="cat" onclick="openMain('wallpaper')"><div class="box">🖼️</div><h3>Wallpaper</h3><p>4K • 200+ Ready</p></div>
-<div class="cat" onclick="openMain('thumbnail')"><div class="box">🎬</div><h3>Create Thumbnail</h3><p>From ৳150 • CTR</p></div>
-<div class="cat" onclick="openMain('logo')"><div class="box">💎</div><h3>Create Logo</h3><p>From ৳300 • Luxury</p></div>
-<div class="cat" onclick="openMain('banner')"><div class="box">🚀</div><h3>Create Banner</h3><p>From ৳250 • 4K</p></div>
+<div class="grid">
+<div class="card" onclick="openWall()"><div>🖼️</div><b>Wallpaper</b><p style="color:#666;font-size:11px">Phone / PC</p></div>
+<div class="card" onclick="openPack('thumbnail')"><div>🎬</div><b>Create Thumbnail</b><p style="color:#666;font-size:11px">From 150tk</p></div>
+<div class="card" onclick="openPack('logo')"><div>💎</div><b>Create Logo</b><p style="color:#666;font-size:11px">From 300tk</p></div>
+<div class="card" onclick="openPack('banner')"><div>🚀</div><b>Create Banner</b><p style="color:#666;font-size:11px">From 250tk</p></div>
 </div>
 
 <div id="view">
-<button class="back" onclick="closeView()">← Back</button>
+<button class="btn" onclick="closeView()">← Back</button>
 <div id="content"></div>
 </div>
 
 <script>
-let items=[
-{name:"Midnight Peaks",price:80,img:"wall1.jpg",cat:"pc"},
-{name:"Black Gold",price:100,img:"wall2.jpg",cat:"phone"},
-{name:"Arctic Smoke",price:100,img:"wall3.jpg",cat:"phone"}
-];
-
-let packs={
-thumbnail:{title:"Thumbnail Pack",price:"৳150",desc:"High CTR YouTube thumbnails in 24h delivery"},
-logo:{title:"Logo Design",price:"৳300",desc:"Minimal luxury logos
+function openWall(){
+var v=document.getElementById('view');
+var c=document.getElementById('content');
+v.className='show';
+c.innerHTML='<div class="box2"><div class="smallBox" onclick="showP()"><div>📱</div><b>Phone</b></div><div class="smallBox" onclick="showC()"><div>💻</div><b>PC</b></div></div><div id="g" class="gal"></div>';
+v.scrollIntoView();
+}
+function showP(){
+var g=document.getElementById('g');
+g.innerHTML='<div class="pic"><img src="wall2.jpg"><p>Black Gold - 100tk</p></div><div class="pic"><img src="wall3.jpg"><p>Arctic - 100tk</p></div>';
+}
+function showC(){
+var g=document.getElementById('g');
+g.innerHTML='<div class="pic"><img src="wall1.jpg"><p>Midnight Peaks - 80tk</p></div>';
+}
+function openPack(t){
+var v=document.getElementById('view');
+var c=document.getElementById('content');
+v.className='show';
+var price='150tk';
+if(t=='logo') price='300tk';
+if(t=='banner') price='250tk';
+c.innerHTML='<div class="order"><h2>'+t.toUpperCase()+' - '+price+'</h2><input id="em" placeholder="Your Email"><textarea id="idea" placeholder="What kind of '+t+' you want?"></textarea><button onclick="sendWA(\''+t+'\')">Order on WhatsApp</button></div>';
+v.scrollIntoView();
+}
+function closeView(){
+document.getElementById('view').className='';
+}
+function sendWA(t){
+var e=document.getElementById('em').value;
+var i=document.getElementById('idea').value;
+if(e==''||i==''){alert('Email + Idea likho');return;}
+var txt='New '+t+' Order Email:'+e+' Idea:'+i;
+window.open('https://wa.me/8801880000000?text='+txt,'_blank');
+}
+</script>
+</body>
+</html>
