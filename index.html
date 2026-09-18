@@ -1,107 +1,66 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VELTY - Beyond Wallpapers</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VELTY</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'SF Pro Display',system-ui}
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
 body{background:#050505;color:#fff}
-.hero{height:88vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:20px;background:radial-gradient(circle at 50% 0%,#1a1a1a,#050505 70%)}
-.hero h1{font-size:clamp(32px,7vw,64px);font-weight:900;letter-spacing:-2px;line-height:.9;background:linear-gradient(180deg,#fff,#999);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{color:#888;margin-top:18px;max-width:600px;font-size:16px;letter-spacing:.5px}
-.hero.cta{margin-top:28px;background:#fff;color:#000;padding:14px 28px;border-radius:100px;font-weight:800;border:none;cursor:pointer}
-.section{max-width:1100px;margin:auto;padding:30px 20px}
-.title{font-size:24px;font-weight:800;margin-bottom:18px;letter-spacing:-.5px}
-.main-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-@media(min-width:800px){.main-grid{grid-template-columns:1fr 1fr 1fr 1fr}}
-.cat{border:1px solid #1c1c1c;background:linear-gradient(145deg,#111,#080808);border-radius:20px;padding:26px;cursor:pointer;transition:.35s;position:relative;overflow:hidden}
-.cat:hover{transform:translateY(-4px);border-color:#fff2;box-shadow:0 20px 40px #000}
-.cat h3{font-size:18px}
-.cat span{color:#555;font-size:12px;display:block;margin-top:6px}
-.cat.icon{font-size:28px;margin-bottom:14px;display:block}
-.active-ring{position:absolute;inset:0;border:2px solid #d4af37;border-radius:20px;opacity:0;transition:.3s}
-.cat.active.active-ring{opacity:1}
-#subView{display:none;margin-top:10px}
-#subView.show{display:block;animation:pop.5s cubic-bezier(.2,.8,.2,1)}
-@keyframes pop{from{opacity:0;transform:translateY(20px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
-.sub-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
-.sub-card{background:#111;border:1px solid #222;border-radius:18px;padding:28px;text-align:center;cursor:pointer;transition:.3s}
-.sub-card:hover{border-color:#d4af37;background:#151515}
-.gallery{margin-top:24px;display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px}
-.item{background:#0e0e0e;border:1px solid #1a1a1a;border-radius:16px;overflow:hidden}
-.item img{width:100%;display:block}
-.item.pc img{aspect-ratio:16/9;object-fit:cover}
-.item.phone img{aspect-ratio:9/16;object-fit:cover}
-.info{padding:10px;display:flex;justify-content:space-between;align-items:center}
-.info b{font-size:13px;font-weight:600}
-.info em{background:#fff;color:#000;font-style:normal;padding:4px 10px;border-radius:100px;font-size:12px;font-weight:800}
-.back{margin:18px 0;background:#141414;border:1px solid #222;color:#fff;padding:8px 16px;border-radius:100px;cursor:pointer}
-.small{color:#666;font-size:12px;margin:6px 0 20px}
+header{display:flex;justify-content:space-between;padding:16px 20px;border-bottom:1px solid #111;position:sticky;top:0;background:#050505;z-index:20}
+header h1{letter-spacing:5px;font-size:18px}
+.hero{padding:40px 20px 10px;max-width:1100px;margin:auto}
+.hero h1{font-size:48px;font-weight:900;letter-spacing:-2px;line-height:.9;text-align:left}
+.hero h1 span{color:#d4af37}
+.hero p{color:#666;margin-top:12px;max-width:400px;font-size:13px}
+.grid4{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 20px;max-width:1100px;margin:auto;padding:16px 20px}
+@media(min-width:700px){.grid4{grid-template-columns:repeat(4,1fr)}}
+.cat{border:1px solid #1a1a1a;background:#0e0e0e;border-radius:18px;padding:20px;cursor:pointer;transition:.3s}
+.cat:hover{border-color:#444;transform:translateY(-2px)}
+.cat h3{font-size:14px;margin-top:10px}
+.cat p{color:#555;font-size:11px;margin-top:3px}
+.box{width:34px;height:34px;background:#151515;border-radius:9px;display:grid;place-items:center}
+#view{max-width:1100px;margin:auto;padding:0 20px;display:none}
+#view.show{display:block;animation:up .35s ease}
+@keyframes up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.sub2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.subcard{background:#111;border:1px solid #222;border-radius:16px;padding:22px;text-align:center;cursor:pointer}
+.subcard:hover{border-color:#d4af37}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:16px}
+.item{background:#0e0e0e;border:1px solid #1a1a1a;border-radius:14px;overflow:hidden}
+.item img{width:100%;display:block}.phone img{aspect-ratio:9/16;object-fit:cover}.pc img{aspect-ratio:16/9;object-fit:cover}
+.info{padding:10px;display:flex;justify-content:space-between}
+.info b{font-size:12px} .info em{background:#fff;color:#000;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:800;font-style:normal}
+.order{background:#0e0e0e;border:1px solid #1e1e1e;border-radius:20px;padding:22px;margin-top:16px}
+.order h2{font-size:20px} .order .price{color:#d4af37;font-size:22px;font-weight:900;margin:8px 0}
+.order input,.order textarea{width:100%;background:#111;border:1px solid #222;color:#fff;padding:12px;border-radius:10px;margin-top:10px;outline:none}
+.order input:focus,.order textarea:focus{border-color:#d4af37}
+.order button{width:100%;background:#fff;color:#000;border:none;padding:13px;border-radius:12px;font-weight:900;margin-top:12px;cursor:pointer}
+.back{background:#161616;border:1px solid #222;color:#fff;padding:7px 14px;border-radius:100px;cursor:pointer;font-size:12px;margin-bottom:12px}
 </style>
 </head>
 <body>
+<header><h1>VELTY</h1><span style="color:#555;font-size:10px">EST.2026</span></header>
+<div class="hero"><h1>Your Screen<br><span>Deserves Better.</span></h1><p>Premium wallpapers + custom thumbnails, logos & banners crafted for you.</p></div>
 
-<div class="hero">
-<h1>Your Screen<br>Deserves Better.</h1>
-<p>We don't sell wallpapers. We sell the feeling you get every time you unlock your phone. Curated 4K, OLED true black, made for VELTY.</p>
-<button class="cta" onclick="document.getElementById('work').scrollIntoView({behavior:'smooth'})">Explore Collection ↓</button>
+<div class="grid4">
+<div class="cat" onclick="openMain('wallpaper')"><div class="box">🖼️</div><h3>Wallpaper</h3><p>4K • 200+ Ready</p></div>
+<div class="cat" onclick="openMain('thumbnail')"><div class="box">🎬</div><h3>Create Thumbnail</h3><p>From ৳150 • CTR</p></div>
+<div class="cat" onclick="openMain('logo')"><div class="box">💎</div><h3>Create Logo</h3><p>From ৳300 • Luxury</p></div>
+<div class="cat" onclick="openMain('banner')"><div class="box">🚀</div><h3>Create Banner</h3><p>From ৳250 • 4K</p></div>
 </div>
 
-<div class="section" id="work">
-<div class="title">What we create</div>
-<p class="small">Choose a category to start</p>
-<div class="main-grid" id="mainGrid">
-<div class="cat" onclick="openMain('wallpaper',this)"><span class="icon">🖼️</span><h3>Wallpaper</h3><span>4K • AMOLED • Luxury</span><div class="active-ring"></div></div>
-<div class="cat" onclick="alert('Coming Soon - Thumbnail pack')"><span class="icon">🎬</span><h3>Create Thumbnail</h3><span>YouTube • CTR Ready</span></div>
-<div class="cat" onclick="alert('Coming Soon - Logo pack')"><span class="icon">💎</span><h3>Create Logo</h3><span>Minimal • Luxury</span></div>
-<div class="cat" onclick="alert('Coming Soon - Banner pack')"><span class="icon">🚀</span><h3>Create Banner</h3><span>Social • 4K</span></div>
-</div>
-
-<div id="subView">
-<button class="back" onclick="closeMain()">← All Categories</button>
-<div class="sub-grid" id="subGrid">
-<div class="sub-card" onclick="showGallery('phone')"><div style="font-size:32px">📱</div><h3 style="margin-top:10px">Phone</h3><p style="color:#666;font-size:12px;margin-top:4px">9:16 • OLED</p></div>
-<div class="sub-card" onclick="showGallery('pc')"><div style="font-size:32px">💻</div><h3 style="margin-top:10px">PC</h3><p style="color:#666;font-size:12px;margin-top:4px">16:9 • 4K</p></div>
-</div>
-<div class="gallery" id="gallery"></div>
-</div>
-
+<div id="view">
+<button class="back" onclick="closeView()">← Back</button>
+<div id="content"></div>
 </div>
 
 <script>
 let items=[
 {name:"Midnight Peaks",price:80,img:"wall1.jpg",cat:"pc"},
 {name:"Black Gold",price:100,img:"wall2.jpg",cat:"phone"},
-{name:"Arctic Smoke",price:100,img:"wall3.jpg",cat:"phone"},
+{name:"Arctic Smoke",price:100,img:"wall3.jpg",cat:"phone"}
 ];
 
-function openMain(type,el){
-if(type!=='wallpaper')return;
-document.querySelectorAll('.cat').forEach(c=>c.classList.remove('active'));
-el.classList.add('active');
-document.getElementById('subView').classList.add('show');
-document.getElementById('subView').style.display='block';
-document.getElementById('gallery').innerHTML='';
-document.getElementById('subGrid').style.display='grid';
-document.getElementById('subView').scrollIntoView({behavior:'smooth',block:'start'});
-}
-function closeMain(){
-document.getElementById('subView').style.display='none';
-document.querySelectorAll('.cat').forEach(c=>c.classList.remove('active'));
-document.getElementById('mainGrid').scrollIntoView({behavior:'smooth'});
-}
-function showGallery(c){
-let g=document.getElementById('gallery');
-let list=items.filter(i=>i.cat===c);
-g.innerHTML='';
-if(list.length===0){g.innerHTML=`<p style='color:#666;grid-column:1/-1;text-align:center;padding:40px'>No ${c} wallpapers yet. Upload ${c==='phone'?'wall2.jpg, wall3.jpg':'wall1.jpg'}</p>`;return;}
-list.forEach(it=>{
-g.innerHTML+=`<div class="item ${it.cat}"><img src="${it.img}" onerror="this.src='https://picsum.photos/400/700'"><div class="info"><b>${it.name}</b><em>৳${it.price}</em></div></div>`;
-});
-g.scrollIntoView({behavior:'smooth'});
-}
-</script>
-</body>
-</html>
+let packs={
+thumbnail:{title:"Thumbnail Pack",price:"৳150",desc:"High CTR YouTube thumbnails in 24h delivery"},
+logo:{title:"Logo Design",price:"৳300",desc:"Minimal luxury logos
