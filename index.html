@@ -1,76 +1,106 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>VELTY - Premium Wallpapers</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VELTY - Beyond Wallpapers</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#0a0a0a;color:#fff;font-family:Inter,sans-serif;overflow-x:hidden}
-header{padding:20px;text-align:center;border-bottom:1px solid #222}
-header h1{letter-spacing:4px;color:#d4af37}
-#home{display:flex;flex-direction:column;gap:20px;padding:40px 20px;max-width:900px;margin:auto}
-.card{border:1px solid #d4af3733;background:linear-gradient(135deg,#151515,#0a0a0a);border-radius:20px;padding:30px;text-align:center;cursor:pointer;transition:.4s;position:relative;overflow:hidden}
-.card:hover{transform:scale(1.02);border-color:#d4af37;box-shadow:0 0 30px #d4af3744}
-.card h2{font-size:28px;margin-bottom:10px}
-.card p{color:#888}
-.badge{position:absolute;top:15px;left:15px;background:#d4af37;color:#000;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:bold}
-#gallery{display:none;animation:slideIn .5s ease}
-@keyframes slideIn{from{opacity:0;transform:translateY(50px)}to{opacity:1;transform:translateY(0)}}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:15px;padding:20px}
-.item{border-radius:12px;overflow:hidden;background:#151515;border:1px solid #222}
-.item img{width:100%;aspect-ratio:9/16;object-fit:cover;display:block}
-.item .pc img{aspect-ratio:16/9}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'SF Pro Display',system-ui}
+body{background:#050505;color:#fff}
+.hero{height:88vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:20px;background:radial-gradient(circle at 50% 0%,#1a1a1a,#050505 70%)}
+.hero h1{font-size:clamp(32px,7vw,64px);font-weight:900;letter-spacing:-2px;line-height:.9;background:linear-gradient(180deg,#fff,#999);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:#888;margin-top:18px;max-width:600px;font-size:16px;letter-spacing:.5px}
+.hero.cta{margin-top:28px;background:#fff;color:#000;padding:14px 28px;border-radius:100px;font-weight:800;border:none;cursor:pointer}
+.section{max-width:1100px;margin:auto;padding:30px 20px}
+.title{font-size:24px;font-weight:800;margin-bottom:18px;letter-spacing:-.5px}
+.main-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(min-width:800px){.main-grid{grid-template-columns:1fr 1fr 1fr 1fr}}
+.cat{border:1px solid #1c1c1c;background:linear-gradient(145deg,#111,#080808);border-radius:20px;padding:26px;cursor:pointer;transition:.35s;position:relative;overflow:hidden}
+.cat:hover{transform:translateY(-4px);border-color:#fff2;box-shadow:0 20px 40px #000}
+.cat h3{font-size:18px}
+.cat span{color:#555;font-size:12px;display:block;margin-top:6px}
+.cat.icon{font-size:28px;margin-bottom:14px;display:block}
+.active-ring{position:absolute;inset:0;border:2px solid #d4af37;border-radius:20px;opacity:0;transition:.3s}
+.cat.active.active-ring{opacity:1}
+#subView{display:none;margin-top:10px}
+#subView.show{display:block;animation:pop.5s cubic-bezier(.2,.8,.2,1)}
+@keyframes pop{from{opacity:0;transform:translateY(20px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+.sub-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.sub-card{background:#111;border:1px solid #222;border-radius:18px;padding:28px;text-align:center;cursor:pointer;transition:.3s}
+.sub-card:hover{border-color:#d4af37;background:#151515}
+.gallery{margin-top:24px;display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px}
+.item{background:#0e0e0e;border:1px solid #1a1a1a;border-radius:16px;overflow:hidden}
+.item img{width:100%;display:block}
+.item.pc img{aspect-ratio:16/9;object-fit:cover}
+.item.phone img{aspect-ratio:9/16;object-fit:cover}
 .info{padding:10px;display:flex;justify-content:space-between;align-items:center}
-.info button{background:#d4af37;border:none;padding:5px 12px;border-radius:6px;font-weight:bold;cursor:pointer}
-.back{margin:20px;background:transparent;border:1px solid #333;color:#fff;padding:10px 20px;border-radius:8px;cursor:pointer}
+.info b{font-size:13px;font-weight:600}
+.info em{background:#fff;color:#000;font-style:normal;padding:4px 10px;border-radius:100px;font-size:12px;font-weight:800}
+.back{margin:18px 0;background:#141414;border:1px solid #222;color:#fff;padding:8px 16px;border-radius:100px;cursor:pointer}
+.small{color:#666;font-size:12px;margin:6px 0 20px}
 </style>
 </head>
 <body>
-<header><h1>VELTY</h1><p style="color:#666;font-size:12px;letter-spacing:2px">PREMIUM COLLECTION</p></header>
 
-<div id="home">
-  <div class="card" onclick="openCat('phone')">
-    <span class="badge">1.2k+ • AMOLED</span>
-    <h2>📱 Phone Wallpapers</h2>
-    <p>Portrait • 9:16 • 4K • OLED Black</p>
-  </div>
-  <div class="card" onclick="openCat('pc')">
-    <span class="badge">890+ • 4K/8K</span>
-    <h2>💻 PC Wallpapers</h2>
-    <p>Ultrawide • 16:9 • 4K • Minimal</p>
-  </div>
+<div class="hero">
+<h1>Your Screen<br>Deserves Better.</h1>
+<p>We don't sell wallpapers. We sell the feeling you get every time you unlock your phone. Curated 4K, OLED true black, made for VELTY.</p>
+<button class="cta" onclick="document.getElementById('work').scrollIntoView({behavior:'smooth'})">Explore Collection ↓</button>
 </div>
 
-<div id="gallery">
-  <button class="back" onclick="goHome()">← Back to Categories</button>
-  <h2 id="catTitle" style="padding:0 20px"></h2>
-  <div class="grid" id="grid"></div>
+<div class="section" id="work">
+<div class="title">What we create</div>
+<p class="small">Choose a category to start</p>
+<div class="main-grid" id="mainGrid">
+<div class="cat" onclick="openMain('wallpaper',this)"><span class="icon">🖼️</span><h3>Wallpaper</h3><span>4K • AMOLED • Luxury</span><div class="active-ring"></div></div>
+<div class="cat" onclick="alert('Coming Soon - Thumbnail pack')"><span class="icon">🎬</span><h3>Create Thumbnail</h3><span>YouTube • CTR Ready</span></div>
+<div class="cat" onclick="alert('Coming Soon - Logo pack')"><span class="icon">💎</span><h3>Create Logo</h3><span>Minimal • Luxury</span></div>
+<div class="cat" onclick="alert('Coming Soon - Banner pack')"><span class="icon">🚀</span><h3>Create Banner</h3><span>Social • 4K</span></div>
+</div>
+
+<div id="subView">
+<button class="back" onclick="closeMain()">← All Categories</button>
+<div class="sub-grid" id="subGrid">
+<div class="sub-card" onclick="showGallery('phone')"><div style="font-size:32px">📱</div><h3 style="margin-top:10px">Phone</h3><p style="color:#666;font-size:12px;margin-top:4px">9:16 • OLED</p></div>
+<div class="sub-card" onclick="showGallery('pc')"><div style="font-size:32px">💻</div><h3 style="margin-top:10px">PC</h3><p style="color:#666;font-size:12px;margin-top:4px">16:9 • 4K</p></div>
+</div>
+<div class="gallery" id="gallery"></div>
+</div>
+
 </div>
 
 <script>
 let items=[
-  {name:"Midnight Peaks",price:80,img:"wall1.jpg",cat:"pc"},
-  {name:"Black Gold",price:100,img:"wall2.jpg",cat:"phone"},
-  {name:"Arctic Smoke",price:100,img:"wall3.jpg",cat:"phone"},
-  // aro add korte chaile ekhane add koro
+{name:"Midnight Peaks",price:80,img:"wall1.jpg",cat:"pc"},
+{name:"Black Gold",price:100,img:"wall2.jpg",cat:"phone"},
+{name:"Arctic Smoke",price:100,img:"wall3.jpg",cat:"phone"},
 ];
 
-function openCat(c){
-  document.getElementById('home').style.display='none';
-  let g=document.getElementById('gallery');
-  g.style.display='block';
-  document.getElementById('catTitle').innerText= c=='phone' ? 'Phone Wallpapers' : 'PC Wallpapers';
-  let grid=document.getElementById('grid');
-  grid.innerHTML='';
-  let filtered=items.filter(i=>i.cat===c);
-  filtered.forEach(it=>{
-    grid.innerHTML+=`<div class="item ${c}"><img src="${it.img}" loading="lazy"><div class="info"><span>${it.name}</span><button>৳${it.price}</button></div></div>`;
-  });
-  if(filtered.length==0) grid.innerHTML=`<p style="color:#666;padding:20px">No wallpapers in this category yet. Add ${c} wallpapers as ${c=='phone'?'wall2.jpg, wall3.jpg':'wall1.jpg'}</p>`;
+function openMain(type,el){
+if(type!=='wallpaper')return;
+document.querySelectorAll('.cat').forEach(c=>c.classList.remove('active'));
+el.classList.add('active');
+document.getElementById('subView').classList.add('show');
+document.getElementById('subView').style.display='block';
+document.getElementById('gallery').innerHTML='';
+document.getElementById('subGrid').style.display='grid';
+document.getElementById('subView').scrollIntoView({behavior:'smooth',block:'start'});
 }
-function goHome(){
-  document.getElementById('gallery').style.display='none';
-  document.getElementById('home').style.display='flex';
+function closeMain(){
+document.getElementById('subView').style.display='none';
+document.querySelectorAll('.cat').forEach(c=>c.classList.remove('active'));
+document.getElementById('mainGrid').scrollIntoView({behavior:'smooth'});
+}
+function showGallery(c){
+let g=document.getElementById('gallery');
+let list=items.filter(i=>i.cat===c);
+g.innerHTML='';
+if(list.length===0){g.innerHTML=`<p style='color:#666;grid-column:1/-1;text-align:center;padding:40px'>No ${c} wallpapers yet. Upload ${c==='phone'?'wall2.jpg, wall3.jpg':'wall1.jpg'}</p>`;return;}
+list.forEach(it=>{
+g.innerHTML+=`<div class="item ${it.cat}"><img src="${it.img}" onerror="this.src='https://picsum.photos/400/700'"><div class="info"><b>${it.name}</b><em>৳${it.price}</em></div></div>`;
+});
+g.scrollIntoView({behavior:'smooth'});
 }
 </script>
 </body>
