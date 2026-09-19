@@ -13,78 +13,72 @@ header{padding:16px 20px;border-bottom:1px solid #111;display:flex;justify-conte
 .hero h1 span{color:#d4af37}
 .grid{max-width:1100px;margin:auto;padding:14px 20px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(min-width:700px){.grid{grid-template-columns:repeat(4,1fr)}}
-.card{background:#0e0e0e;border:1px solid #1a1a1a;border-radius:18px;padding:18px;cursor:pointer;transition:.2s}
-.card:hover{border-color:#333;transform:translateY(-2px)}
+.card{background:#0e0e0e;border:1px solid #1a1a1a;border-radius:18px;padding:18px;cursor:pointer}
 .card b{font-size:14px;display:block;margin-top:10px}
 .card p{color:#555;font-size:11px;margin-top:3px}
 .icon{width:34px;height:34px;background:#151515;border-radius:9px;display:grid;place-items:center}
 #view{max-width:1100px;margin:auto;padding:0 20px 60px;display:none}
-#view.open{display:block;animation:up .3s ease}
-@keyframes up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+#view.open{display:block}
 .back{background:#161616;border:1px solid #2a2a2a;color:#fff;padding:8px 16px;border-radius:100px;font-size:12px;cursor:pointer}
 .subGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
 .subBox{background:#111;border:1px solid #222;border-radius:16px;padding:22px;text-align:center;cursor:pointer}
-.subBox:hover{border-color:#d4af37}
+.subBox small{color:#d4af37;font-weight:800}
 .gallery{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .pic{background:#0e0e0e;border:1px solid #1a1a1a;border-radius:14px;overflow:hidden}
-.pic img{width:100%;display:block}
+.pic img{width:100%;display:block;background:#111}
 .pic.phone img{aspect-ratio:9/16;object-fit:cover}
 .pic.pc img{aspect-ratio:16/9;object-fit:cover}
-.meta{padding:10px;display:flex;justify-content:space-between;font-size:12px}
-.meta i{background:#fff;color:#000;font-style:normal;padding:3px 9px;border-radius:20px;font-weight:800}
+.meta{padding:10px;display:flex;justify-content:space-between;font-size:12px;align-items:center}
+.meta i{background:#fff;color:#000;font-style:normal;padding:4px 10px;border-radius:20px;font-weight:900}
 .orderBox{background:#0e0e0e;border:1px solid #222;border-radius:20px;padding:20px;margin-top:14px}
 .orderBox input,.orderBox textarea{width:100%;background:#0a0a0a;border:1px solid #222;color:#fff;padding:12px;border-radius:10px;margin-top:10px;outline:none}
-.orderBox input:focus,.orderBox textarea:focus{border-color:#d4af37}
 .orderBox button{width:100%;background:#fff;color:#000;border:none;padding:14px;border-radius:12px;font-weight:900;margin-top:14px;cursor:pointer}
 </style>
 </head>
 <body>
 <header><div style="letter-spacing:6px;font-weight:900">VELTY</div><div style="color:#555;font-size:10px">EST 2026</div></header>
-<div class="hero"><h1>Your Screen<br><span>Deserves Better.</span></h1><p style="color:#666;margin-top:10px;font-size:13px">Wallpapers + custom design — built for creators.</p></div>
-
+<div class="hero"><h1>Your Screen<br><span>Deserves Better.</span></h1><p style="color:#666;margin-top:10px;font-size:13px">Phone ৳10 • PC ৳20 • Premium 4K</p></div>
 <div class="grid">
-<div class="card" onclick="doWallpaper()"><div class="icon">🖼️</div><b>Wallpaper</b><p>4K • Ready</p></div>
+<div class="card" onclick="doWallpaper()"><div class="icon">🖼️</div><b>Wallpaper</b><p>Phone / PC</p></div>
 <div class="card" onclick="doOrder('thumbnail','150')"><div class="icon">🎬</div><b>Create Thumbnail</b><p>From ৳150</p></div>
 <div class="card" onclick="doOrder('logo','300')"><div class="icon">💎</div><b>Create Logo</b><p>From ৳300</p></div>
 <div class="card" onclick="doOrder('banner','250')"><div class="icon">🚀</div><b>Create Banner</b><p>From ৳250</p></div>
 </div>
-
-<div id="view">
-<button class="back" onclick="closeView()">← Back to Categories</button>
-<div id="content"></div>
-</div>
-
+<div id="view"><button class="back" onclick="closeView()">← Back</button><div id="content"></div></div>
 <script>
 function doWallpaper(){
-var v=document.getElementById('view');
-var c=document.getElementById('content');
-v.classList.add('open');
-v.style.display='block';
-c.innerHTML='<div class="subGrid"><div class="subBox" onclick="showPhone()"><div style="font-size:30px">📱</div><b>Phone</b><p style="color:#666;font-size:11px;margin-top:4px">9:16 AMOLED</p></div><div class="subBox" onclick="showPC()"><div style="font-size:30px">💻</div><b>PC</b><p style="color:#666;font-size:11px;margin-top:4px">16:9 4K</p></div></div><div id="gal" class="gallery"></div>';
-document.getElementById('view').scrollIntoView({behavior:'smooth'});
+var v=document.getElementById('view');var c=document.getElementById('content');
+v.classList.add('open');v.style.display='block';
+c.innerHTML='<div class="subGrid"><div class="subBox" onclick="showPhone()"><div style="font-size:30px">📱</div><b>Phone Wallpaper</b><br><small>Only ৳10</small></div><div class="subBox" onclick="showPC()"><div style="font-size:30px">💻</div><b>PC Wallpaper</b><br><small>Only ৳20</small></div></div><div id="gal" class="gallery"></div>';
+v.scrollIntoView({behavior:'smooth'});
 }
 function showPhone(){
 var g=document.getElementById('gal');
-g.innerHTML='<div class="pic phone"><img src="wall2.jpg" onerror="this.src=\'https://picsum.photos/300/500\'"><div class="meta"><b>Black Gold</b><i>৳100</i></div></div><div class="pic phone"><img src="wall3.jpg" onerror="this.src=\'https://picsum.photos/300/501\'"><div class="meta"><b>Arctic Smoke</b><i>৳100</i></div></div>';
+g.innerHTML=`
+<div class="pic phone"><img src="wall1.jpg" onerror="this.src='https://picsum.photos/seed/blackgold/300/500'"><div class="meta"><b>Black Gold</b><i>৳10</i></div></div>
+<div class="pic phone"><img src="wall2.jpg" onerror="this.src='https://picsum.photos/seed/mind/300/500'"><div class="meta"><b>Mind Your Business</b><i>৳10</i></div></div>
+<div class="pic phone"><img src="wall3.jpg"><div class="meta"><b>Midnight Marble</b><i>৳10</i></div></div>
+<div class="pic phone"><img src="wall4.jpg"><div class="meta"><b>Moon Cloud</b><i>৳10</i></div></div>
+`;
 }
 function showPC(){
 var g=document.getElementById('gal');
-g.innerHTML='<div class="pic pc"><img src="wall1.jpg" onerror="this.src=\'https://picsum.photos/500/300\'"><div class="meta"><b>Midnight Peaks</b><i>৳80</i></div></div>';
+g.innerHTML=`
+<div class="pic pc"><img src="pc1.jpg" onerror="this.src='https://picsum.photos/seed/pc1/500/300'"><div class="meta"><b>Midnight Peaks - PC</b><i>৳20</i></div></div>
+<div class="pic pc"><img src="pc2.jpg" onerror="this.src='https://picsum.photos/seed/pc2/500/300'"><div class="meta"><b>Golden Hour - PC</b><i>৳20</i></div></div>
+`;
 }
 function doOrder(type,price){
-var v=document.getElementById('view');
-var c=document.getElementById('content');
-v.classList.add('open');
-v.style.display='block';
-c.innerHTML='<div class="orderBox"><h2>'+type.toUpperCase()+'</h2><h3 style="color:#d4af37;margin:8px 0">৳'+price+' - Starting Price</h3><p style="color:#666;font-size:13px">24h delivery • Unlimited revisions</p><input id="email" placeholder="Your Email"><textarea id="idea" rows="4" placeholder="What kind of '+type+' do you want to make? Example: gaming thumbnail with fire text"></textarea><button onclick="sendOrder(\''+type+'\')">Send Order on WhatsApp</button><p style="color:#444;font-size:11px;text-align:center;margin-top:10px">We reply within 2 hours</p></div>';
+var v=document.getElementById('view');var c=document.getElementById('content');
+v.classList.add('open');v.style.display='block';
+c.innerHTML='<div class="orderBox"><h2>'+type.toUpperCase()+'</h2><h3 style="color:#d4af37;margin:8px 0">৳'+price+' Starting</h3><input id="email" placeholder="Your Email"><textarea id="idea" rows="4" placeholder="What kind of '+type+' you want?"></textarea><button onclick="sendOrder(\''+type+'\')">Order on WhatsApp</button></div>';
 v.scrollIntoView({behavior:'smooth'});
 }
 function closeView(){document.getElementById('view').style.display='none';}
 function sendOrder(t){
-var e=document.getElementById('email').value;
-var idea=document.getElementById('idea').value;
-if(!e||!idea){alert('Email and idea likho bhai');return;}
-window.open('https://wa.me/8801XXXXXXXXX?text=New '+t+' Order%0AEmail:'+e+'%0AIdea:'+idea,'_blank');
+var e=document.getElementById('email').value;var i=document.getElementById('idea').value;
+if(!e||!i){alert('Email + Idea likho');return;}
+window.open('https://wa.me/8801880000000?text=New '+t+' Order - Email:'+e+' Idea:'+i,'_blank');
 }
 </script>
 </body>
