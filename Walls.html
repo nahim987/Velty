@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VELTY WALLS</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#080808;color:#fff;font-family:Inter,sans-serif}
+header{display:flex;justify-content:space-between;padding:22px;border-bottom:1px solid #111;position:sticky;top:0;background:rgba(8,8,8,.8);backdrop-filter:blur(20px);z-index:5}
+header a{color:#666;text-decoration:none;font-size:11px;letter-spacing:2px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#111}
+@media(min-width:700px){.grid{grid-template-columns:repeat(4,1fr)}}
+.item{background:#080808;padding:8px;cursor:pointer}
+.item img{width:100%;display:block;border-radius:12px;background:#111}
+.item.phone img{aspect-ratio:9/16;object-fit:cover}
+.item.pc img{aspect-ratio:16/9;object-fit:cover}
+.row{display:flex;justify-content:space-between;padding:10px 4px 8px;font-size:11px}
+.row b{letter-spacing:1px;font-weight:500}
+.row span{background:#fff;color:#000;padding:3px 8px;border-radius:20px;font-weight:800;font-size:10px}
+</style>
+</head>
+<body>
+<header><a href="index.html">← BACK</a><div id="title" style="font-size:11px;letter-spacing:3px"></div><div></div></header>
+<div class="grid" id="grid"></div>
+<script>
+const WA="8801511530396";
+const type=new URLSearchParams(location.search).get('type')||'phone';
+document.getElementById('title').innerText=type.toUpperCase()+' WALLS';
+const price=type=='phone'?'৳10':'৳15';
+const walls=type=='phone'?[
+{name:'Black Gold',img:'wall1.jpg'},
+{name:'Mind Business',img:'wall2.jpg'},
+{name:'Marble',img:'wall3.jpg'},
+{name:'Moon',img:'wall4.jpg'}
+]:[
+{name:'Midnight Peaks',img:'pc1.jpg'},
+{name:'Golden Hour',img:'pc2.jpg'},
+{name:'Neon City',img:'pc3.jpg'}
+];
+document.getElementById('grid').innerHTML=walls.map(w=>`
+<div class="item ${type}" onclick="buy('${w.name}')">
+<img src="${w.img}" onerror="this.src='https://picsum.photos/seed/${w.name}/500/800'">
+<div class="row"><b>${w.name}</b><span>${price}</span></div>
+</div>`).join('');
+function buy(n){window.open(`https://wa.me/${WA}?text=I want to buy ${n} (${type}) ${price}`,'_blank')}
+</script>
+</body>
+</html>
