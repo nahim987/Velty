@@ -1,84 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VELTY - Beyond Wallpapers</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VELTY — CURATED WALLS</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,-apple-system}
-body{background:#050505;color:#fff}
-header{padding:16px 20px;border-bottom:1px solid #111;display:flex;justify-content:space-between;position:sticky;top:0;background:#050505;z-index:99}
-.hero{padding:32px 20px 12px;max-width:1100px;margin:auto}
-.hero h1{font-size:42px;font-weight:900;line-height:.9;letter-spacing:-1px}
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@800&family=Inter:wght@400;600&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#070707;color:#fff;font-family:'Inter',sans-serif}
+header{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:18px 22px;background:rgba(7,7,7,.8);backdrop-filter:blur(20px);border-bottom:1px solid #151515}
+.logo{font-family:'Syne',sans-serif;font-weight:800;letter-spacing:5px;font-size:20px}
+.hero{padding:70px 22px 30px;max-width:1200px;margin:auto}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(38px,8vw,78px);line-height:.85;letter-spacing:-3px}
 .hero h1 span{color:#d4af37}
-.grid{max-width:1100px;margin:auto;padding:14px 20px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media(min-width:700px){.grid{grid-template-columns:repeat(4,1fr)}}
-.card{background:#0e0e0e;border:1px solid #1a1a1a;border-radius:18px;padding:18px;cursor:pointer}
-.card b{font-size:14px;display:block;margin-top:10px}
-.card p{color:#555;font-size:11px;margin-top:3px}
-.icon{width:34px;height:34px;background:#151515;border-radius:9px;display:grid;place-items:center}
-#view{max-width:1100px;margin:auto;padding:0 20px 60px;display:none}
-#view.open{display:block}
-.back{background:#161616;border:1px solid #2a2a2a;color:#fff;padding:8px 16px;border-radius:100px;font-size:12px;cursor:pointer}
-.subGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
-.subBox{background:#111;border:1px solid #222;border-radius:16px;padding:22px;text-align:center;cursor:pointer}
-.subBox small{color:#d4af37;font-weight:800}
-.gallery{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.pic{background:#0e0e0e;border:1px solid #1a1a1a;border-radius:14px;overflow:hidden}
-.pic img{width:100%;display:block;background:#111}
-.pic.phone img{aspect-ratio:9/16;object-fit:cover}
-.pic.pc img{aspect-ratio:16/9;object-fit:cover}
-.meta{padding:10px;display:flex;justify-content:space-between;font-size:12px;align-items:center}
-.meta i{background:#fff;color:#000;font-style:normal;padding:4px 10px;border-radius:20px;font-weight:900}
-.orderBox{background:#0e0e0e;border:1px solid #222;border-radius:20px;padding:20px;margin-top:14px}
-.orderBox input,.orderBox textarea{width:100%;background:#0a0a0a;border:1px solid #222;color:#fff;padding:12px;border-radius:10px;margin-top:10px;outline:none}
-.orderBox button{width:100%;background:#fff;color:#000;border:none;padding:14px;border-radius:12px;font-weight:900;margin-top:14px;cursor:pointer}
+.hero p{color:#666;margin-top:18px;max-width:420px;line-height:1.6}
+.categories{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:1200px;margin:20px auto;padding:0 22px}
+@media(min-width:800px){.categories{grid-template-columns:repeat(4,1fr)}}
+.cat{background:#111;border:1px solid #1e1e1e;border-radius:24px;padding:24px;cursor:pointer;transition:.3s}
+.cat:hover{background:#151515;transform:translateY(-4px);border-color:#d4af37}
+.cat h3{font-family:'Syne';margin-top:14px;font-size:16px}
+.cat small{color:#555}
+#gallery{max-width:1200px;margin:30px auto;padding:0 22px;display:none}
+#gallery.show{display:block}
+.g-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(min-width:800px){.grid{grid-template-columns:repeat(3,1fr)}}
+.card{background:#0e0e0e;border:1px solid #1a1a1a;border-radius:18px;overflow:hidden;position:relative}
+.card img{width:100%;display:block;transition:.6s}
+.card:hover img{transform:scale(1.05)}
+.card.phone img{aspect-ratio:9/16;object-fit:cover}
+.card.pc img{aspect-ratio:16/10;object-fit:cover}
+.info{position:absolute;bottom:0;left:0;right:0;padding:14px;background:linear-gradient(transparent,rgba(0,0,0,.9));display:flex;justify-content:space-between;align-items:end}
+.info b{font-size:12px}
+.info i{background:#fff;color:#000;font-style:normal;padding:5px 12px;border-radius:20px;font-weight:800;font-size:12px}
+.wa-btn{background:#d4af37;color:#000;border:none;padding:14px 22px;border-radius:100px;font-weight:800;cursor:pointer}
 </style>
 </head>
 <body>
-<header><div style="letter-spacing:6px;font-weight:900">VELTY</div><div style="color:#555;font-size:10px">EST 2026</div></header>
-<div class="hero"><h1>Your Screen<br><span>Deserves Better.</span></h1><p style="color:#666;margin-top:10px;font-size:13px">Phone ৳10 • PC ৳20 • Premium 4K</p></div>
-<div class="grid">
-<div class="card" onclick="doWallpaper()"><div class="icon">🖼️</div><b>Wallpaper</b><p>Phone / PC</p></div>
-<div class="card" onclick="doOrder('thumbnail','150')"><div class="icon">🎬</div><b>Create Thumbnail</b><p>From ৳150</p></div>
-<div class="card" onclick="doOrder('logo','300')"><div class="icon">💎</div><b>Create Logo</b><p>From ৳300</p></div>
-<div class="card" onclick="doOrder('banner','250')"><div class="icon">🚀</div><b>Create Banner</b><p>From ৳250</p></div>
+<header><div class="logo">VELTY</div><div style="color:#555;font-size:11px">CURATED BY NAHIM</div></header>
+<div class="hero"><h1>BEYOND<br><span>WALLPAPERS.</span></h1><p>Not random Pinterest dumps. Every wall is color-graded, 4K, and made to make your screen look expensive.</p></div>
+<div class="categories">
+<div class="cat" onclick="openGal('phone')"><div style="font-size:28px">📱</div><h3>Phone Walls</h3><small>From ৳10</small></div>
+<div class="cat" onclick="openGal('pc')"><div style="font-size:28px">💻</div><h3>PC Walls</h3><small>From ৳20</small></div>
+<div class="cat" onclick="orderNow('Logo')"><div style="font-size:28px">💎</div><h3>Logo Design</h3><small>From ৳300</small></div>
+<div class="cat" onclick="orderNow('Thumbnail')"><div style="font-size:28px">🎬</div><h3>Thumbnail</h3><small>From ৳150</small></div>
 </div>
-<div id="view"><button class="back" onclick="closeView()">← Back</button><div id="content"></div></div>
+<div id="gallery"><div class="g-head"><h2 id="gTitle" style="font-family:Syne"></h2><button onclick="this.parentElement.parentElement.classList.remove('show')" style="background:#1a1a1a;color:#fff;border:none;padding:8px 14px;border-radius:20px">Close</button></div><div id="grid" class="grid"></div></div>
 <script>
-function doWallpaper(){
-var v=document.getElementById('view');var c=document.getElementById('content');
-v.classList.add('open');v.style.display='block';
-c.innerHTML='<div class="subGrid"><div class="subBox" onclick="showPhone()"><div style="font-size:30px">📱</div><b>Phone Wallpaper</b><br><small>Only ৳10</small></div><div class="subBox" onclick="showPC()"><div style="font-size:30px">💻</div><b>PC Wallpaper</b><br><small>Only ৳20</small></div></div><div id="gal" class="gallery"></div>';
-v.scrollIntoView({behavior:'smooth'});
-}
-function showPhone(){
-var g=document.getElementById('gal');
-g.innerHTML=`
-<div class="pic phone"><img src="wall1.jpg" onerror="this.src='https://picsum.photos/seed/blackgold/300/500'"><div class="meta"><b>Black Gold</b><i>৳10</i></div></div>
-<div class="pic phone"><img src="wall2.jpg" onerror="this.src='https://picsum.photos/seed/mind/300/500'"><div class="meta"><b>Mind Your Business</b><i>৳10</i></div></div>
-<div class="pic phone"><img src="wall3.jpg"><div class="meta"><b>Midnight Marble</b><i>৳10</i></div></div>
-<div class="pic phone"><img src="wall4.jpg"><div class="meta"><b>Moon Cloud</b><i>৳10</i></div></div>
+const MY_WHATSAPP = "8801880000000"; // <-- TOR NUMBER EKHANE BOSA
+
+function openGal(type){
+let gal=document.getElementById('gallery');let grid=document.getElementById('grid');let title=document.getElementById('gTitle');
+gal.classList.add('show');
+if(type=='phone'){
+title.innerText='PHONE — ৳10';
+grid.innerHTML=`
+<div class="card phone"><img src="wall1.jpg"><div class="info"><b>BLACK GOLD</b><i>৳10</i></div></div>
+<div class="card phone"><img src="wall2.jpg"><div class="info"><b>MIND YOUR BUSINESS</b><i>৳10</i></div></div>
+<div class="card phone"><img src="wall3.jpg"><div class="info"><b>MIDNIGHT MARBLE</b><i>৳10</i></div></div>
+<div class="card phone"><img src="wall4.jpg"><div class="info"><b>MOON CLOUD</b><i>৳10</i></div></div>
+`;
+}else{
+title.innerText='PC — ৳20';
+grid.innerHTML=`
+<div class="card pc"><img src="pc1.jpg" onerror="this.src='https://picsum.photos/seed/pc1/600/400'"><div class="info"><b>MIDNIGHT PEAKS</b><i>৳20</i></div></div>
+<div class="card pc"><img src="pc2.jpg" onerror="this.src='https://picsum.photos/seed/pc2/600/400'"><div class="info"><b>GOLDEN HOUR</b><i>৳20</i></div></div>
 `;
 }
-function showPC(){
-var g=document.getElementById('gal');
-g.innerHTML=`
-<div class="pic pc"><img src="pc1.jpg" onerror="this.src='https://picsum.photos/seed/pc1/500/300'"><div class="meta"><b>Midnight Peaks - PC</b><i>৳20</i></div></div>
-<div class="pic pc"><img src="pc2.jpg" onerror="this.src='https://picsum.photos/seed/pc2/500/300'"><div class="meta"><b>Golden Hour - PC</b><i>৳20</i></div></div>
-`;
+gal.scrollIntoView({behavior:'smooth'});
+document.querySelectorAll('.card').forEach(c=>c.onclick=()=>orderNow(c.querySelector('b').innerText));
 }
-function doOrder(type,price){
-var v=document.getElementById('view');var c=document.getElementById('content');
-v.classList.add('open');v.style.display='block';
-c.innerHTML='<div class="orderBox"><h2>'+type.toUpperCase()+'</h2><h3 style="color:#d4af37;margin:8px 0">৳'+price+' Starting</h3><input id="email" placeholder="Your Email"><textarea id="idea" rows="4" placeholder="What kind of '+type+' you want?"></textarea><button onclick="sendOrder(\''+type+'\')">Order on WhatsApp</button></div>';
-v.scrollIntoView({behavior:'smooth'});
-}
-function closeView(){document.getElementById('view').style.display='none';}
-function sendOrder(t){
-var e=document.getElementById('email').value;var i=document.getElementById('idea').value;
-if(!e||!i){alert('Email + submit idea');return;}
-window.open('https://wa.me/8801511530396?text=New '+t+' Order - Email:'+e+' Idea:'+i,'_blank');
+function orderNow(name){
+let msg=`Hi Velty! I want to buy: ${name}%0APayment: Bkash/Nagad`;
+window.open(`https://wa.me/${MY_WHATSAPP}?text=${msg}`,'_blank');
 }
 </script>
 </body>
